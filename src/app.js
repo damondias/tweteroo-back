@@ -23,7 +23,8 @@ app.post("/tweets", (req,res) => {
     const { avatar } = users.find(u => u.username === username)
 
     if (!username) {
-        res.status(400).send("UNAUTHORIZED");
+        res.status(401).send("UNAUTHORIZED");
+        return
     }
 
     tweets.push({
