@@ -18,15 +18,13 @@ app.post("/sign-up", (req,res) => {
 
 app.post("/tweets", (req,res) => {
     const body = req.body;
-
-    const { username, tweet} = body;
-    const { avatar } = users.find(u => u.username === username)
-
-    if (!username) {
+    if (!body.username ) {
         res.status(401).send("UNAUTHORIZED");
         return
     }
 
+    const { username, tweet} = body;
+    const { avatar } = users.find(u => u.username === username)
     tweets.push({
         username,
         avatar,
