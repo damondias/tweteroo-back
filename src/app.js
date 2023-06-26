@@ -18,7 +18,8 @@ app.post("/sign-up", (req,res) => {
 
 app.post("/tweets", (req,res) => {
     const body = req.body;
-    if (!body.username ) {
+    
+    if (!users.find(u => u.username === body.username)) {
         res.status(401).send("UNAUTHORIZED");
         return
     }
