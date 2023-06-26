@@ -22,6 +22,10 @@ app.post("/tweets", (req,res) => {
     const { username, tweet} = body;
     const { avatar } = users.find(u => u.username === username)
 
+    if (!username) {
+        res.status(400).send("UNAUTHORIZED");
+    }
+
     tweets.push({
         username,
         avatar,
@@ -31,6 +35,7 @@ app.post("/tweets", (req,res) => {
 });
 
 app.get("/tweets", (req,res) =>{
+    
     if(tweets.length <= 10 ){
         res.send([...tweets].reverse());
     } else {
